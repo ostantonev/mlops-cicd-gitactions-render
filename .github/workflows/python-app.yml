@@ -24,7 +24,8 @@ jobs:
         python -m pip install --upgrade pip
     - name: Install dependencies
       run: |
-        if [ -f starter/requirements.txt ]; then pip install --cache-dir /home/runner/.cache/pip -r starter/requirements.txt ; fi
+        if [ -f starter/requirements.txt ]; then pip install -r starter/requirements.txt; fi
+        # if [ -f starter/requirements.txt ]; then pip install --cache-dir /home/runner/.cache/pip -r starter/requirements.txt ; fi
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
