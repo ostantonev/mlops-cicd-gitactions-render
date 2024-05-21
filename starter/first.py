@@ -1,11 +1,11 @@
 from typing import Union
-from fastapiimport FastAPI
+from fastapi import FastAPI
 
 # Import Union since our Item object will have tags that can be strings or a list.
-from typingimport Union
+from typing import Union
 
 # BaseModel from Pydantic is used to define data objects.
-from pydanticimport BaseModel
+from pydantic import BaseModel
 
 # Declare the data object with its components and their type.
 class TaggedItem(BaseModel):
