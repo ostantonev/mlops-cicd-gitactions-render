@@ -12,6 +12,9 @@ class TaggedItem(BaseModel):
     name:str
     tags: Union[str,list]
     item_id:int
+    
+class Value(BaseModel):
+    value: int
 
 app =FastAPI()
 
