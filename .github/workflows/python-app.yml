@@ -35,3 +35,11 @@ jobs:
     - name: Test with pytest
       run: |
         pytest starter/first.py || true
+    - name: Deploy
+      # The Deploy step executes a curl request to our deploy hook URL only if the Test  with pytest step succeeded.
+      # using hook to trigger the deployment only if test succeds, see https://docs.render.com/deploy-hooks for setting the secret
+      env:
+        deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+      
+      run: |
+        curl "$deploy_url"
