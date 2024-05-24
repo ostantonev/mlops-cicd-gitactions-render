@@ -26,8 +26,10 @@ cat_features = [
 X_train, y_train, encoder, lb = process_data(
     train, categorical_features=cat_features, label="salary", training=True
 )
+in_out.save_artifact(encoder, 'model/encoder.pkl')
+in_out.save_artifact(encoder, 'model/lb.pkl')
 
 
 # Train and save a model.
 model = train_model(X_train, y_train)
-in_out.save_model(model, 'model/trained_model.pkl')
+in_out.save_artifact(model, 'model/trained_model.pkl')

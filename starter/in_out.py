@@ -39,40 +39,40 @@ def load_X_y(data_path):
     return X, y
 
 
-def load_model(pickle_model_path):
+def load_artifact(artifact_path):
     """
-    Loads a machine learning model from a file.
+    Loads from a file.
 
     Parameters
     ----------
-    pickle_model_path : str
-        The path to the file containing the model.
+    artifact_path : str
+        The path to the file containing the artifact.
 
     Returns
     -------
-    model
-        The loaded machine learning model.
+    artifact
+        The loaded machine learning artifact.
     """
-    log.info(f"loading model from {pickle_model_path}")
-    with open(pickle_model_path, 'rb') as f:
-        model = pickle.load(f)
-    return model
+    log.info(f"loading from {artifact_path}")
+    with open(artifact_path, 'rb') as f:
+        artifact = pickle.load(f)
+    return artifact
 
 
-def save_model(model, pickle_model_path):
+def save_artifact(artifact, artifact_path):
     """
-    Stores a machine learning model to a file.
+    Stores to a file.
 
     Parameters
     ----------
-    model : ???
-        Trained machine learning model.
-    pickle_model_path : str
-        The path to the file where the model should be stored.
+    artifact : ???
+        Trained machine learning artifact.
+    artifact_path : str
+        The path to the file where the artifact should be stored.
     """
-    log.info(f"saving model {pickle_model_path}")
-    with open(pickle_model_path, "wb") as f:
-        pickle.dump(model, f)
+    log.info(f"saving {artifact_path}")
+    with open(artifact_path, "wb") as f:
+        pickle.dump(artifact, f)
 
 
 def write_list_to_file(str_list, file_path):
