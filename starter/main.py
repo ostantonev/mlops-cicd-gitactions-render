@@ -6,7 +6,7 @@ from starter.ml.data import process_data, cat_features, Person
 
 model=in_out.load_artifact('model/model.pkl')
 encoder=in_out.load_artifact('model/encoder.pkl')
-lb=in_out.load_artifact('model/lb.pkl')
+lb=in_out.load_artifact('trained_model/lb.pkl')
 
 app = FastAPI()
 
