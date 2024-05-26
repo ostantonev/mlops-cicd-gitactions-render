@@ -6,6 +6,12 @@ import pickle
 import pandas as pd
 from logger_config import log
 
+def to_full_path(path):
+
+    cwd = os.getcwd()
+    absolute_path = os.path.join(cwd, path)
+    log.info(f"current working directory is {cwd}, full path for {path} is {absolute_path}")
+    return absolute_path
 
 def load_dataframe_from_file(file_path):
     """
@@ -53,8 +59,9 @@ def load_artifact(artifact_path):
     artifact
         The loaded machine learning artifact.
     """
-    log.info(f"loading from {artifact_path}")
-    with open(artifact_path, 'rb') as f:
+    full_path=to_full_path(artifact_path)
+    log.info(f"loading from {full_path}")
+    with open(full_path, 'rb') as f:
         artifact = pickle.load(f)
     return artifact
 
