@@ -35,7 +35,7 @@ class Person(BaseModel):
         schema_extra = {
             "examples": [
                 {
-                    "age": 40,
+                    "age": 41,
                     "workclass": "Private",
                     "fnlwgt": 200000,
                     "education": "11th",
