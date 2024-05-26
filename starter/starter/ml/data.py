@@ -1,5 +1,57 @@
 import numpy as np
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
+from pydantic import BaseModel, Field
+
+cat_features = [
+    "workclass",
+    "education",
+    "marital_status",
+    "occupation",
+    "relationship",
+    "race",
+    "sex",
+    "native_country",
+]
+
+class Person(BaseModel):
+# see https://archive.ics.uci.edu/dataset/20/census+income
+    age: int = Field(default=40)
+    workclass: str = Field(default="Private")
+    fnlgt: int = Field(default=200000)
+    education: str = Field(default="11th")
+    education_num: int = Field(default=11, alias="education-num")
+    marital_status: str = Field(default="Separated", alias="marital-status")
+    occupation: str = Field(default="Sales")
+    race: str = Field(default="White")
+    relationship: str = Field(default="Wife")
+    sex: str = Field(default="Female")
+    capital_gain: int = Field(default=5000, alias="capital-gain")
+    capital_loss: int = Field(default=800, alias="capital-loss")
+    hours_per_week: int = Field(default=45, alias="hours-per-week")
+    native_country: str = Field(default="United-States", alias="native-country")
+
+    class Config:
+        # see https://fastapi.tiangolo.com/tutorial/schema-extra-example/
+        schema_extra = {
+            "examples": [
+                {
+                    "age": 40,
+                    "workclass": "Private",
+                    "fnlwgt": 200000,
+                    "education": "11th",
+                    "education_num": 11,
+                    "marital_status": "Separated",
+                    "occupation": "Sales",
+                    "relationship": "Wife",
+                    "race": "White",
+                    "sex": "Female",
+                    "capital_gain": 5000,
+                    "capital_loss": 800,
+                    "hours_per_week": 45,
+                    "native_country": "United-States",
+                }
+            ]
+        }
 
 
 def process_data(
@@ -62,7 +114,7 @@ def process_data(
         X_categorical = encoder.transform(X_categorical)
         try:
             y = lb.transform(y.values).ravel()
-        # Catch the case where y is None because we're doing inference.
+        # Catch the case where y is None because we"re doing inference.
         except AttributeError:
             pass
 
