@@ -7,17 +7,18 @@ import pickle
 import pandas as pd
 from logger_config import log
 
-def list_directory_contents(folder_path):
-    result = subprocess.run(['ls', '-lat', folder_path], capture_output=True, text=True, check=True)
+def list_directory_contents(path):
+    path_to_folder = os.path.dirname(path)
+    result = subprocess.run(['ls', '-lat', path_to_folder], capture_output=True, text=True, check=True)
     
     # Print the output
-    log.info(f"ls on path {folder_path} is {result.stdout}")
+    log.info(f"ls on path {path_to_folder} is {result.stdout}")
 
 def to_full_path(path):
     cwd = os.getcwd()
     absolute_path = os.path.join(cwd, path)
     log.info(f"current working directory is {cwd}, full path for {path} is {absolute_path}")
-    list_directory_contents(cwd)
+    list_directory_contents(absolute_path)
     return absolute_path
 
 
