@@ -17,6 +17,7 @@ def read_root():
 @app.post("/predict")
 def predict(person: Person):
     X = pd.DataFrame([person.dict()])
+    log.debug(f"got predict request  for person {person}")
 
 
     # data preprocessing
@@ -27,6 +28,7 @@ def predict(person: Person):
         lb=lb,
         training=False,
     )
+    log.debug(f"request preporcessed to {X_preporcessed}")
 
     # prediction
     prediction = model.predict(X_preporcessed)
