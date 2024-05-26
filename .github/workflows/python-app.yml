@@ -34,7 +34,7 @@ jobs:
         flake8 starter --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest starter || true
+        pytest starter
     - name: Deploy
       # The Deploy step executes a curl request to our deploy hook URL only if the Test  with pytest step succeeded.
       # using hook to trigger the deployment only if test succeds, see https://docs.render.com/deploy-hooks for setting the secret
