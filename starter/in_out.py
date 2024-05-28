@@ -98,3 +98,12 @@ def write_list_to_file(str_list, file_path):
             f.write('%s\n' % file_path)
 
 
+def new_row(category, slice, slice_shape, precision, recall, fbeta):
+    return f"{category:<30}{slice:<30}{slice_shape:>10d}{precision:>10.2f}{recall:>10.2f}{fbeta:>10.2f}\n"
+
+def generate_table_header():
+    output_header=f"{'category':<30}{'slice':<30}{'shape':>10}{'precision':>10}{'recall':>10}{'fbeta':>10}\n"
+    output = output_header
+    output_separator = separator = f"{'-'*30}{'-'*30}{'-'*10}{'-'*10}{'-'*10}{'-'*10}\n"
+    output+=output_separator
+    return output

@@ -20,7 +20,7 @@ class Person(BaseModel):
     fnlgt: int = Field(default=200000)
     education: str = Field(default="11th")
     education_num: int = Field(default=11, alias="education-num")
-    marital_status: str = Field(default="Separated", alias="marital-status")
+    marital_status: str = Field(default="Separated", alias="marital_status")
     occupation: str = Field(default="Sales")
     race: str = Field(default="White")
     relationship: str = Field(default="Wife")
@@ -28,7 +28,7 @@ class Person(BaseModel):
     capital_gain: int = Field(default=5000, alias="capital-gain")
     capital_loss: int = Field(default=800, alias="capital-loss")
     hours_per_week: int = Field(default=45, alias="hours-per-week")
-    native_country: str = Field(default="United-States", alias="native-country")
+    native_country: str = Field(default="United-States", alias="native_country")
 
     class Config:
         # see https://fastapi.tiangolo.com/tutorial/schema-extra-example/
