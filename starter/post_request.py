@@ -19,6 +19,12 @@ person_data = {
     "native_country": " United-States",
 }
 
+# URL = "http://localhost:10000/"
 URL = "https://mlops-cicd-gitactions-render.onrender.com/"
-response = requests.post(URL+"/predict/", data=json.dumps(person_data))
+
+
+# response = requests.get(URL)
+# log.info(f"response code={response.status_code}, response text={response.text}")
+
+response = requests.post(URL+"predict", data=json.dumps(person_data))
 log.info(f"response code={response.status_code}, response text={response.text}")

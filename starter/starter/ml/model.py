@@ -88,7 +88,7 @@ def compute_model_metrics_on_dataslices(test, y_test, pred_test):
                 precision, recall, fbeta = compute_model_metrics(
                     y_test_slice['y_test'], y_test_slice['pred_test']
                  )
-                output+=in_out.new_row(category, slice, slice_shape, precision, recall, fbeta)
+                output += in_out.new_row(category, slice, slice_shape, precision, recall, fbeta)
     return output
 
 

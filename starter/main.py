@@ -2,7 +2,7 @@ from fastapi import FastAPI
 import pandas as pd
 from logger_config import log
 import in_out
-from starter.ml.data import Person
+from starter.ml.data import Person, process_data, cat_features
 from starter.ml.model import inference
 
 
@@ -21,11 +21,7 @@ def predict(person: Person):
     log.debug(f"got predict request  for person {person}")
 
     X = pd.DataFrame([person.dict()])
-    _, prediction = inference(model, encoder, lb, X)
+    _, prediction = inference(X, model, encoder, lb)
 
     return {"salary_prediction": "<=50K" if prediction == 0 else ">50K"}
-
-
-
-
 
