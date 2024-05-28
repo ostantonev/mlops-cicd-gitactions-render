@@ -45,7 +45,7 @@ def test_predict_endpoint():
     assert response.headers["Content-Type"] == "application/json"    
     # Assert that the response contains the expected prediction result
     assert response.json() == {"salary_prediction": "<=50K"}
-
+ 
 def test_predict_endpoint_gt_50():
     # Create a test client using TestClient
     client = TestClient(app)
@@ -57,7 +57,7 @@ def test_predict_endpoint_gt_50():
         "fnlgt": 193524,
         "education": "Doctorate",
         "education-num": 16,
-        "marital-status": "Married-civ-spouse",
+        "marital_status": "Married-civ-spouse",
         "occupation": "Prof-specialty",
         "relationship": "Husband",
         "race": "White",
@@ -65,7 +65,7 @@ def test_predict_endpoint_gt_50():
         "capital-gain": 0,
         "capital-loss": 0,
         "hours-per-week": 60,
-        "native-country": " United-States",
+        "native_country": " United-States",
     }
     
     # Make a POST request to the /predict endpoint with the sample Person data
