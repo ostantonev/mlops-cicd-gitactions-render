@@ -1,7 +1,7 @@
 # Script to train machine learning model.
 from sklearn.model_selection import train_test_split
 from starter.ml.data import process_data, cat_features
-from starter.ml.model import train_model, inference, compute_model_metrics_on_dataslices
+from starter.ml.model import train_model, inference, compute_model_metrics, compute_model_metrics_on_dataslices
 from logger_config import log
 import in_out
 # Add the necessary imports for the starter code.
@@ -24,8 +24,13 @@ def main():
     model = train_model(X_train, y_train)
     in_out.save_artifact(model, 'model/trained_model.pkl')
 
+
     # calculate metrics on test data
     y_test, pred_test = inference(test, model, encoder, lb, label="salary")
+    precision, recall, fbeta = compute_model_metrics(y_test, pred_test)
+    log.info(f"Model scores: precision={precision:>10.2f}, recall={recall:>10.2f}, fbeta={fbeta:>10.2f}")
+
+    
     output_table= compute_model_metrics_on_dataslices(test, y_test, pred_test)
     log.info(f"output_table=\n{output_table}")
     in_out.write_list_to_file([output_table], 'model/slice_output.txt')

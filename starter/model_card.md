@@ -1,3 +1,30 @@
+# Model Card
+
+For additional information see the Model Card paper: https://arxiv.org/pdf/1810.03993.pdf
+
+## Model Details
+The model was developed during the training [*Machine Learning DevOps Engineer*](https://learn.udacity.com/nanodegrees/nd0821) and makes salary prediction using RandomForestClassifier from [sklearn](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html).
+The code and author information can be found on [Github](https://github.com/ostantonev/mlops-cicd-gitactions-render)
+the model was trained with default parameters except of fixed random_state=42
+
+
+## Intended Use
+The model is not designed for productive use, but you can learn from developed solution.
+
+## Training Data
+The training dataset was downloaded from the [link](https://archive.ics.uci.edu/dataset/20/census+income) from training course.
+We splitted the data 80% / 20% for training and validation. For some unclear reason we had issues in working with dashes in csv header for categorical fileds, therefore they were replaced by undescores. The CSV file contains is separated not by ',' but  by comma with spaces ', '
+## Evaluation Data
+The dataset is not well balanced, more infos in metrics section below
+
+## Metrics
+Following metrics were evaluated:
+- **precision**=      0.75, 
+- **recall**=      0.61, 
+- **fbeta**=      0.67
+
+Moreover, we evaluated the same metrics on different model slices (see the table below). From the table we can see that for some values we had less than 10 entries in the dataset, thus we cant expect any reasonable prediction for this case.
+<pre>
 category                      slice                              shape precision    recall     fbeta
 ----------------------------------------------------------------------------------------------------
 workclass                     ?                                    359      0.76      0.64      0.69
@@ -101,4 +128,9 @@ native_country                Trinadad&Tobago                        2      1.00
 native_country                United-States                       5799      0.75      0.60      0.67
 native_country                Vietnam                                9      1.00      1.00      1.00
 native_country                Yugoslavia                             3      1.00      1.00      1.00
+</pre>
+## Ethical Considerations
+The model is trained on the training set available in public access. The rest API does not stores any data, but the request is logged, for the use with the real data the log information should be either removed or protected corresponding to GDPR rules. Moreover, the dataset is not well balanced (gender, race etc), the usage of race in the dataset is etically questionable.
 
+## Caveats and Recommendations
+The proposed solution can be used for training purposes after light code refactoring. 
